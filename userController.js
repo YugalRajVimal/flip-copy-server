@@ -4,7 +4,7 @@ import { Cashfree as CashfreePG } from "cashfree-pg";
 
 CashfreePG.XClientId = process.env.CASHFREE_CLIENT_ID;
 CashfreePG.XClientSecret = process.env.CASHFREE_CLIENT_SECRET;
-CashfreePG.XEnvironment = CashfreePG.Environment.SANDBOX;
+CashfreePG.XEnvironment = CashfreePG.Environment.PRODUCTION;
 
 import SubscriptionModel from "./schemas/subscription.schema.js";
 
