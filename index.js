@@ -36,6 +36,6 @@ server.post("/cashfreeWebhook", (req, res) => {
 });
 
 server.listen(process.env.PORT, () => {
-  console.log("Server is running on port : ",process.env.PORT);
-    connectUsingMongoose();
+  console.log("Server is running on port : ", process.env.PORT);
+  // connectUsingMongoose();
 });

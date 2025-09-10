@@ -6,7 +6,7 @@ CashfreePG.XClientId = process.env.CASHFREE_CLIENT_ID;
 CashfreePG.XClientSecret = process.env.CASHFREE_CLIENT_SECRET;
 CashfreePG.XEnvironment = CashfreePG.Environment.PRODUCTION;
 
-import SubscriptionModel from "./schemas/subscription.schema.js";
+// import SubscriptionModel from "./schemas/subscription.schema.js";
 
 class UserController {
   // Function to generate the Cashfree Order ID
@@ -21,7 +21,7 @@ class UserController {
     console.log("1. Get Session ID Process Started");
     //getUserDetails
 
-    const { name, email, phone,amount } = req.body;
+    const { name, email, phone, amount } = req.body;
 
     console.log("1. Email", email);
 
@@ -32,23 +32,23 @@ class UserController {
 
       console.log(paymentAmount);
 
-      const subscription = new SubscriptionModel({
-        name,
-        phone,
-        orderId,
-        email: email,
-        paymentAmount,
-      });
-      subscription.save();
+      // const subscription = new SubscriptionModel({
+      //   name,
+      //   phone,
+      //   orderId,
+      //   email: email,
+      //   paymentAmount,
+      // });
+      // subscription.save();
 
-      console.log("5. Subscription created", subscription);
+      // console.log("5. Subscription created", subscription);
 
       let request = {
         order_id: orderId,
         order_amount: paymentAmount,
         order_currency: "INR",
         customer_details: {
-          customer_id: `${name.replace(/\s/g, '')}${orderId}`,
+          customer_id: `${name.replace(/\s/g, "")}${orderId}`,
           customer_name: name,
           customer_phone: phone,
           customer_email: email,
@@ -79,11 +79,13 @@ class UserController {
       // console.log("Customer ID:", customer_id);
 
       if (payment_status === "SUCCESS") {
-        const subscription = await SubscriptionModel.findOneAndUpdate(
-          { orderId: order_id },
-          { status: "PAID" },
-          { new: true }
-        );
+        // const subscription = await SubscriptionModel.findOneAndUpdate(
+        //   { orderId: order_id },
+        //   { status: "PAID" },
+        //   { new: true }
+        // );
+        console.log(`Order ${order_id} payment status: ${order_status}`);
+
       } else {
         console.log(`Order ${order_id} payment status: ${order_status}`);
       }
